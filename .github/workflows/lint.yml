@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -15,7 +16,9 @@ jobs:
 
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-      - run: pipenv install
+
+      - name: Install dependencies
+        run: pipenv install --dev
 
       - name: Lint
         run: pipenv run lint --format=github
