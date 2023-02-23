@@ -16,5 +16,6 @@ jobs:
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
       - run: pipenv install
-      - name: Run Ruff
-        run: ruff check --format=github .
+
+      - name: Lint
+        run: pipenv run lint --format=github

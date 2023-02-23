@@ -17,3 +17,7 @@ ruff = "~=0.0"
 
 [requires]
 python_version = "3.11"
+
+[scripts]
+lint="ruff check ."
+format="ruff check . --fix"
