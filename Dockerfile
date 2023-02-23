@@ -1,5 +1,6 @@
 FROM alpine:latest as tailscale
 WORKDIR /app
+# renovate: datasource=github-releases depName=tailscale/tailscale
 ARG TAILSCALE_VERSION=1.36.0
 RUN wget https://pkgs.tailscale.com/stable/tailscale_${TAILSCALE_VERSION}_amd64.tgz && \
   tar xzf tailscale_${TAILSCALE_VERSION}_amd64.tgz --strip-components=1
