@@ -26,9 +26,10 @@ class InfluxDB:
         self.write_api = self.db.write_api(write_options=SYNCHRONOUS)
         self.points = []
 
-        atexit.register(self.on_exit, self.db, self.write_api)
+        atexit.register(self.on_exit)
 
     def on_exit(self):
+        return
         self.write_api.close()
         self.db.close()
 

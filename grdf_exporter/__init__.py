@@ -14,12 +14,13 @@ from lowatt_grdf.api import API
 # grdf = API(os.environ.get("CLIENT_ID"), os.environ.get("CLIENT_SECRET"))
 
 def fetch():
-    today = date.today() - timedelta(days=2)
-    delta = timedelta(days=5)
+    today = date.today() - timedelta(days=1)
+    delta = timedelta(days=7)
+
+    points = []
 
     try:
         grdf = API(os.environ.get("CLIENT_ID"), os.environ.get("CLIENT_SECRET"))
-        points = []
 
         for year in range(3):
             start = today.replace(year=today.year - year)
@@ -30,15 +31,18 @@ def fetch():
             ):
                 conso = releve["consommation"]
                 points.append(Point("grdf")
-                    .field("energy", conso["energie"])
-                    .tag("year", start.year)
                     .time(datetime.fromisoformat(conso["date_fin_consommation"]).replace(year=today.year))
+                    .tag("year", start.year)
+                    .field("energy", conso["energie"])
                 )
 
-        return points
     except Exception as e:
         capture_exception(e)
 
+    return points
+
 @repeat(every(12).hours)
 def grdf_exporter():
-    influxdb_exporter.InfluxDB().push(fetch())
+    points = fetch()
+    for point in points:
+        influxdb_exporter.InfluxDB().push(point)

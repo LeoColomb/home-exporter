@@ -6,4 +6,4 @@ sleep 2
 /usr/src/app/tailscale up --authkey="${TAILSCALE_AUTHKEY}" --hostname=fly-home-exporter --accept-routes
 
 # Run exporter
-python /usr/src/app/main.py
+/usr/src/app/.venv/bin/python /usr/src/app/main.py
