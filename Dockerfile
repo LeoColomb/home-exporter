@@ -1,9 +1,4 @@
-FROM docker.io/alpine:latest as tailscale
-WORKDIR /app
-# renovate: datasource=github-releases depName=tailscale/tailscale
-ARG TAILSCALE_VERSION=v1.36.2
-RUN wget https://pkgs.tailscale.com/stable/tailscale_${TAILSCALE_VERSION}_amd64.tgz && \
-  tar xzf tailscale_${TAILSCALE_VERSION}_amd64.tgz --strip-components=1
+FROM docker.io/tailscale/tailscale:v1.36.2 as tailscale
 
 FROM docker.io/python:3 AS builder
 WORKDIR /usr/src
@@ -25,8 +20,8 @@ RUN apt-get update && apt-get install -y \
     iptables \
   && rm -rf /var/lib/apt/lists/*
 
-COPY --from=tailscale /app/tailscaled /usr/src/app/tailscaled
-COPY --from=tailscale /app/tailscale /usr/src/app/tailscale
+COPY --from=tailscale /usr/local/bin/tailscaled /usr/src/app/tailscaled
+COPY --from=tailscale /usr/local/bin/tailscale /usr/src/app/tailscale
 COPY --from=builder /usr/src/.venv /usr/src/app/.venv
 COPY . .
 
