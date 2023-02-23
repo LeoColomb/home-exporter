@@ -1,7 +1,7 @@
 FROM docker.io/alpine:latest as tailscale
 WORKDIR /app
 # renovate: datasource=github-releases depName=tailscale/tailscale
-ARG TAILSCALE_VERSION=1.36.0
+ARG TAILSCALE_VERSION=v1.36.2
 RUN wget https://pkgs.tailscale.com/stable/tailscale_${TAILSCALE_VERSION}_amd64.tgz && \
   tar xzf tailscale_${TAILSCALE_VERSION}_amd64.tgz --strip-components=1
 
