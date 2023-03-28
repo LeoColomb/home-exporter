@@ -42,7 +42,7 @@ def fetch():
     print("done")
     return points
 
-@repeat(every(5).seconds)
+@repeat(every(12).hours)
 def enedis_exporter():
     points = fetch()
     for point in points:
