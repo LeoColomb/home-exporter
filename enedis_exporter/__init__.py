@@ -33,7 +33,10 @@ def fetch():
                 points.append(Point("enedis")
                     .time(datetime.fromisoformat(releve["date"]).replace(year=today.year))
                     .tag("year", start.year)
-                    .field(data["meter_reading"]["reading_type"]["measurement_kind"], releve["value"])
+                    .field(
+                        data["meter_reading"]["reading_type"]["measurement_kind"],
+                        releve["value"]
+                    )
                 )
 
     except Exception as e:
