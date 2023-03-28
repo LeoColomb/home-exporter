@@ -90,7 +90,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/consumption_load_curve",
+            f"{self.api}/metering_data_clc/v5/consumption_load_curve",
             params={
                 "usage_point_id": usage_point_id,
                 "start": from_date,
@@ -105,7 +105,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/daily_consumption_max_power",
+            f"{self.api}/metering_data_dcmp/v5/daily_consumption_max_power",
             params={
                 "usage_point_id": usage_point_id,
                 "start": from_date,

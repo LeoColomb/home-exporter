@@ -15,15 +15,15 @@ sentry_sdk.init(
     traces_sample_rate=1.0,
 )
 
-# import influxdb_exporter # noqa: E402,F401
-# import grdf_exporter # noqa: E402,F401
+import influxdb_exporter # noqa: E402,F401
+import grdf_exporter # noqa: E402,F401
 import enedis_exporter # noqa: E402,F401
-# import logo_exporter # noqa: E402,F401
-# import weather_exporter # noqa: E402,F401
+import logo_exporter # noqa: E402,F401
+import weather_exporter # noqa: E402,F401
 
-# @repeat(every(3).seconds)
-# def write_db():
-#     influxdb_exporter.InfluxDB().write()
+@repeat(every(3).seconds)
+def write_db():
+    influxdb_exporter.InfluxDB().write()
 
 while True:
     run_pending()
