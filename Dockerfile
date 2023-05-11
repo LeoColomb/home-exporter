@@ -1,4 +1,4 @@
-FROM docker.io/tailscale/tailscale:v1.40.0 as tailscale
+FROM docker.io/tailscale/tailscale:v1.40.1 as tailscale
 
 FROM docker.io/python:3 AS builder
 WORKDIR /usr/src
