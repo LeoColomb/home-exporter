@@ -51,9 +51,9 @@ def fetch() -> Point:
             for i in range(len(result['daily']['time'])):
                 if not result['daily']['temperature_2m_mean'][i]:
                     continue
-                points.append(Point("weather")
+                points.append(Point('weather')
                     .time(datetime.fromisoformat(result['daily']['time'][i]).replace(year=today.year))
-                    .tag("year", start.year)
+                    .tag('year', start.year)
                     .field('temperature_min', result['daily']['temperature_2m_min'][i])
                     .field('temperature_max', result['daily']['temperature_2m_max'][i])
                     .field(
