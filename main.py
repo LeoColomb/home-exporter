@@ -20,6 +20,7 @@ import grdf_exporter # noqa: E402,F401
 import enedis_exporter # noqa: E402,F401
 import logo_exporter # noqa: E402,F401
 import weather_exporter # noqa: E402,F401
+import air_exporter # noqa: E402,F401
 
 @repeat(every(3).seconds)
 def write_db():
