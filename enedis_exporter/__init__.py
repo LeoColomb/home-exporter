@@ -16,7 +16,7 @@ enedis = enedis_exporter.enedis.API(
 )
 
 def fetch():
-    today = date.today() - timedelta(days=0)
+    today = date.today()
     delta = timedelta(days=7)
 
     points = []
@@ -44,8 +44,40 @@ def fetch():
 
     return points
 
+def fetch2():
+    today = date.today()
+    delta = timedelta(days=1)
+
+    points = []
+
+    try:
+        data = enedis.consumption_load_curve(
+            os.environ.get("PDL"),
+            from_date=(today - delta).isoformat(),
+            to_date=(today).isoformat()
+        )
+        for releve in data["meter_reading"]["interval_reading"]:
+            points.append(Point("enedis_hour_v1")
+                .time(datetime.fromisoformat(releve["date"]))
+                .field(
+                    data["meter_reading"]["reading_type"]["measurement_kind"],
+                    int(releve["value"])
+                )
+            )
+
+    except Exception as e:
+        capture_exception(e)
+
+    return points
+
 @repeat(every().day.at("13:37"))
 def enedis_exporter():
     points = fetch()
+    for point in points:
+        influxdb_exporter.InfluxDB().push(point)
+
+@repeat(every().day.at("17:04"))
+def enedis_exporter():
+    points = fetch2()
     for point in points:
         influxdb_exporter.InfluxDB().push(point)
