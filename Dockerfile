@@ -1,4 +1,4 @@
-FROM ghcr.io/tailscale/tailscale:v1.48.2 as tailscale
+FROM ghcr.io/tailscale/tailscale:v1.50.0 as tailscale
 
 FROM docker.io/python:3 AS builder
 WORKDIR /usr/src
