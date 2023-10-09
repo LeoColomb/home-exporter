@@ -16,7 +16,7 @@ requests = "~=2.31"
 ruff = "~=0.0"
 
 [requires]
-python_version = "3.11"
+python_version = "3.12"
 
 [scripts]
 lint="ruff check ."
