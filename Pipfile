@@ -13,7 +13,7 @@ sentry-sdk = "~=1.32"
 requests = "~=2.31"
 
 [dev-packages]
-ruff = "~=0.0"
+ruff = "~=0.1"
 
 [requires]
 python_version = "3.12"
