@@ -21,4 +21,4 @@ jobs:
         run: pipenv install --dev
 
       - name: Lint
-        run: pipenv run lint --format=github
+        run: pipenv run lint --output-format=github
