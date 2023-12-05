@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-influxdb-client = "~=1.38"
+influxdb-client = "~=1.39"
 lowatt-grdf = "~=2.1"
 python-dotenv = "~=1.0"
 python-snap7 = "~=1.3"
