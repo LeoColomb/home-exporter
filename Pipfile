@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 influxdb-client = "~=1.41"
-lowatt-grdf = "~=2.1"
+lowatt-grdf = "~=2.2"
 python-dotenv = "~=1.0"
 schedule = "~=1.2"
 sentry-sdk = "~=1.45"
