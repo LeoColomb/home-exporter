@@ -9,7 +9,7 @@ lowatt-grdf = "~=2.2"
 python-dotenv = "~=1.0"
 schedule = "~=1.2"
 sentry-sdk = "~=2.2"
-requests = "~=2.31"
+requests = "~=2.32"
 
 [dev-packages]
 ruff = "~=0.4"
