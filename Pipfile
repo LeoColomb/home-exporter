@@ -8,7 +8,7 @@ influxdb3-python = "~=0.5"
 lowatt-grdf = "~=2.2"
 python-dotenv = "~=1.0"
 schedule = "~=1.2"
-sentry-sdk = "~=2.3"
+sentry-sdk = "~=2.4"
 requests = "~=2.32"
 
 [dev-packages]
