@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 influxdb3-python = "~=0.5"
-lowatt-grdf = "~=2.2"
+lowatt-grdf = "~=2.3"
 python-dotenv = "~=1.0"
 schedule = "~=1.2"
 sentry-sdk = "~=2.4"
