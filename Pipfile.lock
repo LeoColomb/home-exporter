@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "400358f6b51f0ecec9b6d84122eca57c3d43497954f6707c69cc4b837c4894b6"
+            "sha256": "2f6f969766d0797fee107e036d8b77328b3fd68795feaa1560dcb84c9b32360f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -154,12 +154,12 @@
         },
         "influxdb3-python": {
             "hashes": [
-                "sha256:1e26b201541bc60ac79dfb10651fb1f827973f433327168323090876556df83f",
-                "sha256:7bcd304d61b7aca6f530538e235571750b162d4ea0f8e4ad7d4e3c35289d4656"
+                "sha256:81624b47bdf18b2f6ef2054c7779f988c39f64e434b2c940089cac2342088a9e",
+                "sha256:ecf277412b5a7c10765d472d75d8dcd90455de6b3756146d88f26bb52ecc07f5"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==0.6.0"
+            "version": "==0.6.1"
         },
         "lowatt-grdf": {
             "hashes": [
@@ -347,20 +347,20 @@
         },
         "sentry-sdk": {
             "hashes": [
-                "sha256:422b91cb49378b97e7e8d0e8d5a1069df23689d45262b86f54988a7db264e874",
-                "sha256:65cc07e9c6995c5e316109f138570b32da3bd7ff8d0d0ee4aaf2628c3dd8127d"
+                "sha256:d846a211d4a0378b289ced3c434480945f110d0ede00450ba631fc2852e7a0d4",
+                "sha256:db9594c27a4d21c1ebad09908b1f0dc808ef65c2b89c1c8e7e455143262e37c1"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.6'",
-            "version": "==2.6.0"
+            "version": "==2.7.0"
         },
         "setuptools": {
             "hashes": [
-                "sha256:01a1e793faa5bd89abc851fa15d0a0db26f160890c7102cd8dce643e886b47f5",
-                "sha256:d9b8b771455a97c8a9f3ab3448ebe0b29b5e105f1228bba41028be116985a267"
+                "sha256:937a48c7cdb7a21eb53cd7f9b59e525503aa8abaf3584c730dc5f7a5bec3a650",
+                "sha256:a58a8fde0541dab0419750bcc521fbdf8585f6e5cb41909df3a472ef7b81ca95"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==70.1.0"
+            "version": "==70.1.1"
         },
         "six": {
             "hashes": [
