@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "83c3380a5637d466fe81b1f1c5f62de5a5a566cbbcd8a35ca12338f17414aa41"
+            "sha256": "d6d6b5fd18f3d729e1be20362d695d7eeffebbc3dc4fa8e0bec27ada431d7375"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -162,12 +162,12 @@
         },
         "influxdb3-python": {
             "hashes": [
-                "sha256:a99d576b73f67a4f589ee05be55959c476e0a5293b2c94803edacf1e74d8ec30",
-                "sha256:f89f85ddaf1e894025c17d51c24c68fd11a429ebb62f20a64df40bf4c5590eea"
+                "sha256:11dd55a5cb96fc8c595b46534f1224b93c1da58bd64f66b8a986ca43c85b0855",
+                "sha256:52b960a97df84b3b62989415a7c87bae595b5b67ec3d5882f37f86e021b35014"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==0.7.0"
+            "version": "==0.8.0"
         },
         "lowatt-grdf": {
             "hashes": [
@@ -307,7 +307,7 @@
                 "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3",
                 "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.9.0.post0"
         },
         "python-dotenv": {
@@ -375,7 +375,7 @@
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
                 "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.16.0"
         },
         "typing-extensions": {
