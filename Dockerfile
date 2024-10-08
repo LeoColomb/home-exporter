@@ -1,5 +1,5 @@
 # Install uv
-FROM docker.io/python:3.12-slim AS builder
+FROM docker.io/python:3.13-slim AS builder
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
 ENV UV_LINK_MODE=copy
@@ -20,7 +20,7 @@ ADD . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-editable
 
-FROM docker.io/python:3.12-slim
+FROM docker.io/python:3.13-slim
 
 # Copy the environment, but not the source code
 COPY --from=builder --chown=app:app /app/.venv /app/.venv
