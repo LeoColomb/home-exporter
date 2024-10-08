@@ -1,14 +1,27 @@
-FROM docker.io/python:3 AS builder
-WORKDIR /usr/src
-ENV PIPENV_VENV_IN_PROJECT=1
-RUN pip install --user pipenv
-ADD Pipfile.lock Pipfile /usr/src/
-RUN /root/.local/bin/pipenv sync
+# Install uv
+FROM docker.io/python:3.12-slim AS builder
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-FROM docker.io/python:3
-WORKDIR /usr/src/app
+# Change the working directory to the `app` directory
+WORKDIR /app
 
-COPY --from=builder /usr/src/.venv /usr/src/app/.venv
-COPY . .
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project --no-editable
 
-CMD [".fly/start.sh"]
+# Copy the project into the intermediate image
+ADD . /app
+
+# Sync the project
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-editable
+
+FROM docker.io/python:3.12-slim
+
+# Copy the environment, but not the source code
+COPY --from=builder --chown=app:app /app/.venv /app/.venv
+
+# Run the application
+CMD ["/app/.venv/bin/home-exporter"]

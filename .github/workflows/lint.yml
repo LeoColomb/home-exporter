@@ -12,13 +12,16 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v5
         with:
+          python-version-file: ".python-version"
           cache: pipenv
 
-      - name: Install pipenv
-        run: pip install --user pipenv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
 
-      - name: Install dependencies
-        run: pipenv install --dev
+      - name: Install the project
+        run: uv sync --all-extras --dev
 
-      - name: Lint
-        run: pipenv run lint --output-format=github
+      - name: Run tests
+        run: ruff check . --output-format=github

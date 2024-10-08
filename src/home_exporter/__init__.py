@@ -26,6 +26,10 @@ import air_exporter # noqa: E402,F401
 def write_db():
     influxdb_exporter.InfluxDB().write()
 
-while True:
-    run_pending()
-    sleep(1)
+def main():
+    while True:
+        run_pending()
+        sleep(1)
+
+if __name__ == "__main__":
+    main()
