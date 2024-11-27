@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "evohomeclient>=0.3.7",
-    "influxdb3-python>=0.9.0",
+    "influxdb3-python>=0.10.0",
     "lowatt-grdf>=2.3.0",
     "python-dotenv>=1.0.1",
     "requests>=2.32.3",
