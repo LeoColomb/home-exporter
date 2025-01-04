@@ -49,7 +49,7 @@ def reqData(
             .field(
                 'temperature_mean',
                 result['daily']['temperature_2m_mean'][i]
-            )
+            ))
     return points
 
 
