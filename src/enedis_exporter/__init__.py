@@ -24,16 +24,16 @@ def fetch():
         # Daily
         delta = timedelta(days=7)
         for year in range(3):
-            start = today.replace(year=today.year - year)
+            start = today - timedelta(days=365 * year)
             data = enedis.daily_consumption(
                 os.environ.get("PDL"),
                 from_date=(start - delta).isoformat(),
                 to_date=(start).isoformat()
             )
             for releve in data["meter_reading"]["interval_reading"]:
-                points.append(Point("enedis_v2")
+                points.append(Point("enedis_v3")
                     .time(datetime.fromisoformat(releve["date"]).replace(year=today.year))
-                    .tag("year", start.year)
+                    .tag("year", -year)
                     .field(
                         data["meter_reading"]["reading_type"]["measurement_kind"],
                         int(releve["value"])
