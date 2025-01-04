@@ -15,8 +15,17 @@ Rather simple InfluxDB exporter for different data generators at home.
 
 ## Usage
 
-To be documented.
-So far, deployments to Fly.io are configured, and required environment varibles are listed in [`.env.example`](.env.example) file.
+Required environment varibles are listed in [`.env.example`](.env.example) file.
+
+### Fly.io
+
+Deployments to Fly.io are configured
+
+### Local
+
+```shell
+uv run home-exporter
+```
 
 ## License
 

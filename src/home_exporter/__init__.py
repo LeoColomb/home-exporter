@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import signal
+import sys
 from time import sleep
 
 import sentry_sdk
@@ -26,7 +28,13 @@ import air_exporter # noqa: E402,F401
 def write_db():
     influxdb_exporter.InfluxDB().write()
 
+def interrupt_handler(signum, frame):
+    print(f'Handling signal {signum} ({signal.Signals(signum).name}).')
+    influxdb_exporter.InfluxDB().write()
+    sys.exit(0)
+
 def main():
+    signal.signal(signal.SIGINT, interrupt_handler)
     while True:
         run_pending()
         sleep(1)
