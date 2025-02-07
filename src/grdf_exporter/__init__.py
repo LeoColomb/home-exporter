@@ -30,7 +30,7 @@ def fetch():
                 to_date=(start).isoformat()
             ):
                 conso = releve["consommation"]
-                points.append(Point("grdf_v2")
+                points.append(Point("grdf_v3")
                     .time(datetime
                         .fromisoformat(conso["date_fin_consommation"])
                         .replace(year=today.year)
