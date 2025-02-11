@@ -22,5 +22,5 @@ home-exporter = "home_exporter:main"
 [tool.uv]
 package = true
 dev-dependencies = [
-    "ruff>=0.9.5",
+    "ruff>=0.9.6",
 ]
