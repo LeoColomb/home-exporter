@@ -36,7 +36,7 @@ def fetch():
                         .replace(year=today.year)
                     )
                     .tag("year", -year)
-                    .field("energy", conso["energie"])
+                    .field("energy", float(conso["energie"]))
                 )
 
     except Exception as e:
