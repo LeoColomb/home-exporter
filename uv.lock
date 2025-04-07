@@ -123,7 +123,7 @@ dev = [
 requires-dist = [
     { name = "evohomeclient", specifier = ">=0.3.9" },
     { name = "influxdb3-python", specifier = ">=0.12.0" },
-    { name = "lowatt-grdf", specifier = ">=2.3.0" },
+    { name = "lowatt-grdf", specifier = ">=2.4.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "schedule", specifier = ">=1.2.2" },
@@ -161,7 +161,7 @@ wheels = [
 
 [[package]]
 name = "lowatt-grdf"
-version = "2.3.0"
+version = "2.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
@@ -171,9 +171,9 @@ dependencies = [
     { name = "requests" },
     { name = "rich" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/be/71/1b465ef0aae52ec7cb00bab6b1b302738bb1fb9e491345ed0df3da57ea69/lowatt_grdf-2.3.0.tar.gz", hash = "sha256:fcacd4333084802cbde876bb0009167b5a78e5c0319c727894ebf123bd122bf2", size = 14906 }
+sdist = { url = "https://files.pythonhosted.org/packages/e5/94/5d42e4103cc336b242cd52298462874ce45005413a44ee49ff21586c8495/lowatt_grdf-2.4.0.tar.gz", hash = "sha256:1f7ea6ae662cd8104a656bcea54685e597d0c48e70c99d559bc1e9d6f8b5ad01", size = 14326 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0d/cc/6fc878af4a6296e94953562e1192e0bb5b41ff5002aa9a3149966d466ef7/lowatt_grdf-2.3.0-py3-none-any.whl", hash = "sha256:d439584a79b5e7b35c361b6f749789db73082299890ad8115f1036ad5e4ec8b5", size = 12258 },
+    { url = "https://files.pythonhosted.org/packages/46/4a/bbf804f239a2fe88a19199ed383d6c2b36301c0016faa1e62f30e365e5ac/lowatt_grdf-2.4.0-py3-none-any.whl", hash = "sha256:e1387ca8fe9c95bd5cb9a1e94dcc5a347a2d25e73fb65899267215b1a3a340df", size = 12268 },
 ]
 
 [[package]]
