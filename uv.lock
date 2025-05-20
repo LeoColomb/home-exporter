@@ -109,7 +109,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "evohomeclient", specifier = ">=0.3.9" },
-    { name = "influxdb3-python", specifier = ">=0.12.0" },
+    { name = "influxdb3-python", specifier = ">=0.13.0" },
     { name = "lowatt-grdf", specifier = ">=2.5.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "requests", specifier = ">=2.32.3" },
@@ -131,7 +131,7 @@ wheels = [
 
 [[package]]
 name = "influxdb3-python"
-version = "0.12.0"
+version = "0.13.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -141,9 +141,9 @@ dependencies = [
     { name = "setuptools" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/51/5b/af62b42c2d760352d482092870ea87296bf21f70a28908ce062ad58cfadc/influxdb3_python-0.12.0.tar.gz", hash = "sha256:d82ec4193257e49ba7fee1dee940c951c949a8557d0cf2f7b9f817f940ebcf34", size = 79960, upload-time = "2025-03-26T09:40:23.724Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4f/d7/1885a473304f93df6487323d4f1f38f1a4844c01993739ef7193cd4304df/influxdb3_python-0.13.0.tar.gz", hash = "sha256:616ee767286a81b6f575ea3de097bc095db724262586231ca8d7567dd2377a30", size = 82395, upload-time = "2025-05-20T14:34:24.704Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/fc/fc1fe39f094c19c2bea9f2780200465988541e7e571a6ea18b5b6815e1a1/influxdb3_python-0.12.0-py3-none-any.whl", hash = "sha256:991f756528280b376db162e26ad80096168917f294d62f449a70257e65014c03", size = 86358, upload-time = "2025-03-26T09:40:22.72Z" },
+    { url = "https://files.pythonhosted.org/packages/50/9d/6b6f43c9101208e8fdb448d24d3f2c204ceb600dd029ceaa4fc462d871a6/influxdb3_python-0.13.0-py3-none-any.whl", hash = "sha256:c039638fcb44dd7c9433ab19e8f05bb782fa13989cb8c74d90e1291ebcc67b3b", size = 85940, upload-time = "2025-05-20T14:34:23.683Z" },
 ]
 
 [[package]]
