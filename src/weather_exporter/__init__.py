@@ -21,7 +21,8 @@ def reqData(
     r"""Request data handler
     """
     points = []
-    start = today - timedelta(days=365 * yearDelta)
+    yearInDaysDelta = timedelta(days=365 * yearDelta)
+    start = today - yearInDaysDelta
 
     r = requests.get('https://archive-api.open-meteo.com/v1/archive', {
         'latitude': latitude,
@@ -40,16 +41,15 @@ def reqData(
     for i in range(len(result['daily']['time'])):
         if not result['daily']['temperature_2m_mean'][i]:
             continue
-        points.append(Point('weather_v2')
-            .time(datetime.fromisoformat(result['daily']['time'][i]).replace(year=today.year))
-            .tag('year', -yearDelta)
-            .tag('location', location)
-            .field('temperature_min', result['daily']['temperature_2m_min'][i])
-            .field('temperature_max', result['daily']['temperature_2m_max'][i])
-            .field(
-                'temperature_mean',
-                result['daily']['temperature_2m_mean'][i]
-            ))
+        points.append(
+            Point("weather_v2")
+            .time(datetime.fromisoformat(result["daily"]["time"][i]) + yearInDaysDelta)
+            .tag("year", -yearDelta)
+            .tag("location", location)
+            .field("temperature_min", result["daily"]["temperature_2m_min"][i])
+            .field("temperature_max", result["daily"]["temperature_2m_max"][i])
+            .field("temperature_mean", result["daily"]["temperature_2m_mean"][i])
+        )
     return points
 
 

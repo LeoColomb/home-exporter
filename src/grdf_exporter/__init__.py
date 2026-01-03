@@ -23,17 +23,19 @@ def fetch():
 
     try:
         for year in range(3):
-            start = today - timedelta(days=365 * year)
+            yearInDaysDelta = timedelta(days=365 * year)
+            start = today - yearInDaysDelta
             for releve in grdf.donnees_consos_informatives(
                 os.environ.get("PCE"),
                 from_date=(start - delta).isoformat(),
                 to_date=(start).isoformat()
             ):
                 conso = releve["consommation"]
-                points.append(Point("grdf_v3")
-                    .time(datetime
-                        .fromisoformat(conso["date_fin_consommation"])
-                        .replace(year=today.year)
+                points.append(
+                    Point("grdf_v3")
+                    .time(
+                        datetime.fromisoformat(conso["date_fin_consommation"])
+                        + yearInDaysDelta
                     )
                     .tag("year", -year)
                     .field("energy", float(conso["energie"]))
