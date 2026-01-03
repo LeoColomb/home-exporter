@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from datetime import date,timedelta,datetime
+from datetime import date, timedelta, datetime
 
 from schedule import every, repeat
 from sentry_sdk import capture_exception
@@ -10,10 +10,9 @@ from influxdb_client_3 import Point
 import influxdb_exporter
 
 from lowatt_grdf.api import API
-grdf = API(
-    os.environ.get("GRDF_CLIENT_ID"),
-    os.environ.get("GRDF_CLIENT_SECRET")
-)
+
+grdf = API(os.environ.get("GRDF_CLIENT_ID"), os.environ.get("GRDF_CLIENT_SECRET"))
+
 
 def fetch():
     today = date.today() - timedelta(days=1)
@@ -28,7 +27,7 @@ def fetch():
             for releve in grdf.donnees_consos_informatives(
                 os.environ.get("PCE"),
                 from_date=(start - delta).isoformat(),
-                to_date=(start).isoformat()
+                to_date=(start).isoformat(),
             ):
                 conso = releve["consommation"]
                 points.append(
@@ -45,6 +44,7 @@ def fetch():
         capture_exception(e)
 
     return points
+
 
 @repeat(every().day.at("15:05"))
 def grdf_exporter():

@@ -10,6 +10,7 @@ import requests
 
 # from . import LOGGER
 
+
 class BaseAPI(metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
@@ -69,10 +70,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         return (token, access_expires)
 
     def daily_consumption(
-        self,
-        usage_point_id: str,
-        from_date: str,
-        to_date: str
+        self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
             f"{self.api}/metering_data_dc/v5/daily_consumption",
@@ -84,10 +82,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         )
 
     def consumption_load_curve(
-        self,
-        usage_point_id: str,
-        from_date: str,
-        to_date: str
+        self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
             f"{self.api}/metering_data_clc/v5/consumption_load_curve",
@@ -99,10 +94,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         )
 
     def daily_consumption_max_power(
-        self,
-        usage_point_id: str,
-        from_date: str,
-        to_date: str
+        self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
             f"{self.api}/metering_data_dcmp/v5/daily_consumption_max_power",
@@ -112,6 +104,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
                 "end": to_date,
             },
         )
+
 
 class StagingAPI(BaseAPI):
     api = "https://gw.ext.prod-sandbox.api.enedis.fr"

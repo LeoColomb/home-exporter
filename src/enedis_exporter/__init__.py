@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from datetime import date,timedelta,datetime
+from datetime import date, timedelta, datetime
 
 from schedule import every, repeat
 from sentry_sdk import capture_exception
@@ -10,10 +10,11 @@ from influxdb_client_3 import Point
 import influxdb_exporter
 
 import enedis_exporter.enedis
+
 enedis = enedis_exporter.enedis.API(
-    os.environ.get("ENEDIS_CLIENT_ID"),
-    os.environ.get("ENEDIS_CLIENT_SECRET")
+    os.environ.get("ENEDIS_CLIENT_ID"), os.environ.get("ENEDIS_CLIENT_SECRET")
 )
+
 
 def fetch():
     today = date.today()
@@ -29,7 +30,7 @@ def fetch():
             data = enedis.daily_consumption(
                 os.environ.get("PDL"),
                 from_date=(start - delta).isoformat(),
-                to_date=(start).isoformat()
+                to_date=(start).isoformat(),
             )
             for releve in data["meter_reading"]["interval_reading"]:
                 points.append(
@@ -38,7 +39,7 @@ def fetch():
                     .tag("year", -year)
                     .field(
                         data["meter_reading"]["reading_type"]["measurement_kind"],
-                        int(releve["value"])
+                        int(releve["value"]),
                     )
                 )
         # Hourly
@@ -46,14 +47,15 @@ def fetch():
         data = enedis.consumption_load_curve(
             os.environ.get("PDL"),
             from_date=(today - delta).isoformat(),
-            to_date=(today).isoformat()
+            to_date=(today).isoformat(),
         )
         for releve in data["meter_reading"]["interval_reading"]:
-            points.append(Point("enedis_hour_v1")
+            points.append(
+                Point("enedis_hour_v1")
                 .time(datetime.fromisoformat(releve["date"]))
                 .field(
                     data["meter_reading"]["reading_type"]["measurement_kind"],
-                    int(releve["value"])
+                    int(releve["value"]),
                 )
             )
 
@@ -61,6 +63,7 @@ def fetch():
         capture_exception(e)
 
     return points
+
 
 @repeat(every().day.at("13:37"))
 @repeat(every().day.at("01:37"))

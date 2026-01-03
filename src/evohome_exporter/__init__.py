@@ -9,10 +9,11 @@ from influxdb_client_3 import Point
 import influxdb_exporter
 
 from evohomeclient2 import EvohomeClient
+
 client = EvohomeClient(
-    os.environ.get("EVOHOME_CLIENT_ID"),
-    os.environ.get("EVOHOME_CLIENT_SECRET")
+    os.environ.get("EVOHOME_CLIENT_ID"), os.environ.get("EVOHOME_CLIENT_SECRET")
 )
+
 
 def fetch() -> Point:
     points = []
@@ -23,10 +24,16 @@ def fetch() -> Point:
             for gateway in status["gateways"]:
                 for control_system in gateway["temperatureControlSystems"]:
                     for zone in control_system["zones"]:
-                        points.append(Point("evohome_v1")
+                        points.append(
+                            Point("evohome_v1")
                             .tag("zone", zone["name"])
-                            .field("temperature", zone["temperatureStatus"]["temperature"])
-                            .field("setpoint", zone["setpointStatus"]["targetHeatTemperature"])
+                            .field(
+                                "temperature", zone["temperatureStatus"]["temperature"]
+                            )
+                            .field(
+                                "setpoint",
+                                zone["setpointStatus"]["targetHeatTemperature"],
+                            )
                             .field("mode", zone["setpointStatus"]["setpointMode"])
                             .field("status", control_system["systemModeStatus"]["mode"])
                         )
@@ -34,6 +41,7 @@ def fetch() -> Point:
         capture_exception(e)
 
     return points
+
 
 @repeat(every().minute)
 def evohome_exporter():
