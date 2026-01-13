@@ -73,7 +73,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/metering_data_dc/v5/daily_consumption",
+            f"{self.api}/mesure_synchrone_auto/v1/metering_data/daily_consumption",
             params={
                 "usage_point_id": usage_point_id,
                 "start": from_date,
@@ -85,7 +85,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/metering_data_clc/v5/consumption_load_curve",
+            f"{self.api}/mesure_synchrone_auto/v1/metering_data/consumption_load_curve",
             params={
                 "usage_point_id": usage_point_id,
                 "start": from_date,
@@ -97,7 +97,22 @@ class BaseAPI(metaclass=abc.ABCMeta):
         self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/metering_data_dcmp/v5/daily_consumption_max_power",
+            f"{self.api}/mesure_synchrone_auto/v1/metering_data/daily_consumption_max_power",
+            params={
+                "usage_point_id": usage_point_id,
+                "start": from_date,
+                "end": to_date,
+            },
+        )
+
+    def index_consumption(
+        self,
+        usage_point_id: str,
+        from_date: str,
+        to_date: str
+    ) -> Any:
+        return self.get(
+            f"{self.api}/mesure_synchrone_auto/v1/metering_data/index_consumption",
             params={
                 "usage_point_id": usage_point_id,
                 "start": from_date,
