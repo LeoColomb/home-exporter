@@ -9,7 +9,7 @@ dependencies = [
     "influxdb3-python>=0.18.0",
     "lowatt-grdf>=2.5.0",
     "python-dotenv>=1.2.2",
-    "requests>=2.33.0",
+    "requests>=2.33.1",
     "schedule>=1.2.2",
     "sentry-sdk>=2.56.0",
 ]
