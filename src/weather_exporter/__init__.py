@@ -36,6 +36,7 @@ def reqData(
                 "temperature_2m_max",
                 "temperature_2m_min",
                 "temperature_2m_mean",
+                "shortwave_radiation_sum",
             ],
             "timezone": "Europe/Paris",
         },
@@ -53,6 +54,7 @@ def reqData(
             .field("temperature_min", result["daily"]["temperature_2m_min"][i])
             .field("temperature_max", result["daily"]["temperature_2m_max"][i])
             .field("temperature_mean", result["daily"]["temperature_2m_mean"][i])
+            .field("radiation_sum", result["daily"]["shortwave_radiation_sum"][i])
         )
     return points
 
