@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for home-exporter on 2023-04-27T09:45:33Z
+# fly.toml app configuration file generated for home-exporter on 2026-06-07T21:25:35Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -11,8 +11,15 @@ kill_timeout = "5s"
 [experimental]
   auto_rollback = true
 
+[build]
+
 [deploy]
   strategy = "rolling"
 
 [env]
   ENV = "production"
+
+[[services]]
+
+[[vm]]
+  size = "shared-cpu-1x"
