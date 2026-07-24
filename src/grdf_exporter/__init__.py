@@ -1,21 +1,20 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import os
-from datetime import date, timedelta, datetime
+from datetime import UTC, datetime, timedelta
 
+from influxdb_client_3 import Point
+from lowatt_grdf.api import API
 from schedule import every, repeat
 from sentry_sdk import capture_exception
-from influxdb_client_3 import Point
-import influxdb_exporter
 
-from lowatt_grdf.api import API
+import influxdb_exporter
 
 grdf = API(os.environ.get("GRDF_CLIENT_ID"), os.environ.get("GRDF_CLIENT_SECRET"))
 
 
 def fetch():
-    today = date.today() - timedelta(days=1)
+    today = datetime.now(tz=UTC).date() - timedelta(days=1)
     delta = timedelta(days=7)
 
     points = []
@@ -40,7 +39,7 @@ def fetch():
                     .field("energy", float(conso["energie"]))
                 )
 
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         capture_exception(e)
 
     return points

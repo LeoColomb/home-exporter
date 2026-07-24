@@ -1,10 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import abc
 import functools
 import time
-from typing import Any, Optional
+from typing import Any
 
 import requests
 
@@ -20,9 +17,9 @@ class BaseAPI(metaclass=abc.ABCMeta):
     def __init__(self, client_id: str, client_secret: str):
         self.client_id = client_id
         self.client_secret = client_secret
-        self._access_token: Optional[str] = None
-        self._last_request: Optional[float] = None
-        self._access_expires: Optional[float] = None
+        self._access_token: str | None = None
+        self._last_request: float | None = None
+        self._access_expires: float | None = None
 
     def request(self, verb: str, *args: Any, **kwargs: Any) -> Any:
         headers = kwargs.setdefault("headers", {})

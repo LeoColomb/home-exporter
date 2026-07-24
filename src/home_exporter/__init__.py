@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import os
 import signal
@@ -8,7 +7,7 @@ from time import sleep
 
 import sentry_sdk
 from dotenv import load_dotenv
-from schedule import run_pending, every, repeat
+from schedule import every, repeat, run_pending
 
 load_dotenv()
 
@@ -17,12 +16,12 @@ sentry_sdk.init(
     traces_sample_rate=1.0,
 )
 
-import influxdb_exporter  # noqa: E402,F401
-import evohome_exporter  # noqa: E402,F401
-import grdf_exporter  # noqa: E402,F401
-import enedis_exporter  # noqa: E402,F401
-import weather_exporter  # noqa: E402,F401
-import air_exporter  # noqa: E402,F401
+import air_exporter  # noqa: F401
+import enedis_exporter  # noqa: F401
+import evohome_exporter  # noqa: F401
+import grdf_exporter  # noqa: F401
+import influxdb_exporter
+import weather_exporter  # noqa: F401
 
 
 @repeat(every(3).seconds)

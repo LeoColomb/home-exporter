@@ -1,14 +1,13 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import os
 
+from evohomeclient2 import EvohomeClient
+from influxdb_client_3 import Point
 from schedule import every, repeat
 from sentry_sdk import capture_exception
-from influxdb_client_3 import Point
-import influxdb_exporter
 
-from evohomeclient2 import EvohomeClient
+import influxdb_exporter
 
 client = EvohomeClient(
     os.environ.get("EVOHOME_CLIENT_ID"), os.environ.get("EVOHOME_CLIENT_SECRET")
@@ -37,7 +36,7 @@ def fetch() -> Point:
                             .field("mode", zone["setpointStatus"]["setpointMode"])
                             .field("status", control_system["systemModeStatus"]["mode"])
                         )
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         capture_exception(e)
 
     return points
