@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-import os
 import atexit
+import os
 
-from sentry_sdk import capture_exception
 from influxdb_client_3 import SYNCHRONOUS, InfluxDBClient3, write_client_options
+from sentry_sdk import capture_exception
 
 
 def singleton(class_):
@@ -46,5 +45,5 @@ class InfluxDB:
         try:
             self.db.write(record=self.points)
             self.points.clear()
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             capture_exception(e)

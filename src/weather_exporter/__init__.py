@@ -1,21 +1,20 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from datetime import date, timedelta, datetime
-
-from schedule import every, repeat
-from sentry_sdk import capture_exception
-from influxdb_client_3 import Point
-import influxdb_exporter
+from datetime import UTC, datetime, timedelta
 
 import requests
+from influxdb_client_3 import Point
+from schedule import every, repeat
+from sentry_sdk import capture_exception
+
+import influxdb_exporter
 
 
 def reqData(
     location: str,
     latitude: float,
     longitude: float,
-    today: date,
+    today: datetime,
     dayDelta: timedelta,
     yearDelta: int = 0,
 ) -> Point:
@@ -60,7 +59,7 @@ def reqData(
 
 
 def fetch() -> Point:
-    today = date.today() - timedelta(days=1)
+    today = datetime.now(tz=UTC).date() - timedelta(days=1)
     delta = timedelta(days=7)
 
     points = []
@@ -86,7 +85,7 @@ def fetch() -> Point:
                 dayDelta=delta,
             )
         )
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         capture_exception(e)
 
     return points

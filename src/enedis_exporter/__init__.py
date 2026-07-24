@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import os
-from datetime import date, timedelta, datetime
+from datetime import UTC, datetime, timedelta
 
+from influxdb_client_3 import Point
 from schedule import every, repeat
 from sentry_sdk import capture_exception
-from influxdb_client_3 import Point
-import influxdb_exporter
 
 import enedis_exporter.enedis
+import influxdb_exporter
 
 enedis = enedis_exporter.enedis.API(
     os.environ.get("ENEDIS_CLIENT_ID"), os.environ.get("ENEDIS_CLIENT_SECRET")
@@ -17,7 +16,7 @@ enedis = enedis_exporter.enedis.API(
 
 
 def fetch():
-    today = date.today()
+    today = datetime.now(tz=UTC).date()
 
     points = []
 
@@ -59,7 +58,7 @@ def fetch():
                 )
             )
 
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         capture_exception(e)
 
     return points

@@ -1,18 +1,17 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from datetime import date, timedelta, datetime
-
-from schedule import every, repeat
-from sentry_sdk import capture_exception
-from influxdb_client_3 import Point
-import influxdb_exporter
+from datetime import UTC, datetime, timedelta
 
 import requests
+from influxdb_client_3 import Point
+from schedule import every, repeat
+from sentry_sdk import capture_exception
+
+import influxdb_exporter
 
 
 def fetch() -> Point:
-    today = date.today()
+    today = datetime.now(tz=UTC).date()
 
     cities = [
         {
@@ -65,7 +64,7 @@ def fetch() -> Point:
                     .field("olive_pollen", result["hourly"]["olive_pollen"][i])
                     .field("ragweed_pollen", result["hourly"]["ragweed_pollen"][i])
                 )
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         capture_exception(e)
 
     return points
