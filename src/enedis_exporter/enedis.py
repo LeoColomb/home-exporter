@@ -1,12 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import abc
 import functools
 import time
-from typing import Any
+from typing import Any, Optional
 
 import requests
 
 # from . import LOGGER
-
 
 class BaseAPI(metaclass=abc.ABCMeta):
     @property
@@ -17,9 +19,9 @@ class BaseAPI(metaclass=abc.ABCMeta):
     def __init__(self, client_id: str, client_secret: str):
         self.client_id = client_id
         self.client_secret = client_secret
-        self._access_token: str | None = None
-        self._last_request: float | None = None
-        self._access_expires: float | None = None
+        self._access_token: Optional[str] = None
+        self._last_request: Optional[float] = None
+        self._access_expires: Optional[float] = None
 
     def request(self, verb: str, *args: Any, **kwargs: Any) -> Any:
         headers = kwargs.setdefault("headers", {})
@@ -67,38 +69,52 @@ class BaseAPI(metaclass=abc.ABCMeta):
         return (token, access_expires)
 
     def daily_consumption(
-        self, usage_point_id: str, from_date: str, to_date: str
+        self,
+        usage_point_id: str,
+        from_date: str,
+        to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/mesure_synchrone_auto/v1/metering_data/daily_consumption",
+            f"{self.api}/mesure_synchrone_auto/v2/consommation_quotidienne",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
             },
         )
 
     def consumption_load_curve(
-        self, usage_point_id: str, from_date: str, to_date: str
+        self,
+        usage_point_id: str,
+        from_date: str,
+        to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/mesure_synchrone_auto/v1/metering_data/consumption_load_curve",
+            f"{self.api}/mesure_synchrone_auto/v2/courbe_de_charge_consommation",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
             },
         )
 
     def daily_consumption_max_power(
-        self, usage_point_id: str, from_date: str, to_date: str
+        self,
+        usage_point_id: str,
+        from_date: str,
+        to_date: str,
+        step: str = "P1D",
+        unit: str = "PMA"
     ) -> Any:
         return self.get(
-            f"{self.api}/mesure_synchrone_auto/v1/metering_data/daily_consumption_max_power",
+            f"{self.api}/mesure_synchrone_auto/v2/puissance_conso_max_quotidienne",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
+                "mesuresPas": step,
+                "grandeurPhysique": unit,
+
             },
         )
 
@@ -109,14 +125,13 @@ class BaseAPI(metaclass=abc.ABCMeta):
         to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/mesure_synchrone_auto/v1/metering_data/index_consumption",
+            f"{self.api}/mesure_synchrone_auto/v2/index_consommation",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
             },
         )
-
 
 class StagingAPI(BaseAPI):
     api = "https://gw.ext.prod-sandbox.api.enedis.fr"
