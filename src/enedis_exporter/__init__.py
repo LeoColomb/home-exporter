@@ -31,32 +31,50 @@ def fetch():
                 from_date=(start - delta).isoformat(),
                 to_date=(start).isoformat(),
             )
-            for releve in data["meter_reading"]["interval_reading"]:
-                points.append(
-                    Point("enedis_v3")
-                    .time(datetime.fromisoformat(releve["date"]) + yearInDaysDelta)
-                    .tag("year", -year)
-                    .field(
-                        data["meter_reading"]["reading_type"]["measurement_kind"],
-                        int(releve["value"]),
+            for grandeur in data["grandeur"]:
+                for releve in grandeur["points"]:
+                    points.append(
+                        Point("enedis_v4")
+                        .time(datetime.fromisoformat(releve["d"]) + yearInDaysDelta)
+                        .tag("year", -year)
+                        .tag(
+                            "grandeurPhysique",
+                            grandeur["grandeurPhysique"],
+                        )
+                        .tag(
+                            "unit",
+                            grandeur["unite"],
+                        )
+                        .field(
+                            "value",
+                            int(releve["v"]),
+                        )
                     )
-                )
-        # Hourly
+        # Bi-Hourly
         delta = timedelta(days=2)
         data = enedis.consumption_load_curve(
             os.environ.get("PDL"),
             from_date=(today - delta).isoformat(),
             to_date=(today).isoformat(),
         )
-        for releve in data["meter_reading"]["interval_reading"]:
-            points.append(
-                Point("enedis_hour_v1")
-                .time(datetime.fromisoformat(releve["date"]))
-                .field(
-                    data["meter_reading"]["reading_type"]["measurement_kind"],
-                    int(releve["value"]),
+        for grandeur in data["grandeur"]:
+            for releve in grandeur["points"]:
+                points.append(
+                    Point("enedis_hour_v2")
+                    .time(datetime.fromisoformat(releve["d"]))
+                    .tag(
+                        "grandeurPhysique",
+                        grandeur["grandeurPhysique"],
+                    )
+                    .tag(
+                        "unit",
+                        grandeur["unite"],
+                    )
+                    .field(
+                        "value",
+                        int(releve["v"]),
+                    )
                 )
-            )
 
     except Exception as e:  # noqa: BLE001
         capture_exception(e)

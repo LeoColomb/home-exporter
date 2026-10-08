@@ -70,11 +70,11 @@ class BaseAPI(metaclass=abc.ABCMeta):
         self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/metering_data_dc/v5/daily_consumption",
+            f"{self.api}/mesure_synchrone_auto/v2/consommation_quotidienne",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
             },
         )
 
@@ -82,23 +82,42 @@ class BaseAPI(metaclass=abc.ABCMeta):
         self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/metering_data_clc/v5/consumption_load_curve",
+            f"{self.api}/mesure_synchrone_auto/v2/courbe_de_charge_consommation",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
             },
         )
 
     def daily_consumption_max_power(
+        self,
+        usage_point_id: str,
+        from_date: str,
+        to_date: str,
+        step: str = "P1D",
+        unit: str = "PMA",
+    ) -> Any:
+        return self.get(
+            f"{self.api}/mesure_synchrone_auto/v2/puissance_conso_max_quotidienne",
+            params={
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
+                "mesuresPas": step,
+                "grandeurPhysique": unit,
+            },
+        )
+
+    def index_consumption(
         self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
-            f"{self.api}/metering_data_dcmp/v5/daily_consumption_max_power",
+            f"{self.api}/mesure_synchrone_auto/v2/index_consommation",
             params={
-                "usage_point_id": usage_point_id,
-                "start": from_date,
-                "end": to_date,
+                "pointId": usage_point_id,
+                "dateDebut": from_date,
+                "dateFin": to_date,
             },
         )
 
