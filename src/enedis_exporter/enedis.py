@@ -7,6 +7,7 @@ import requests
 
 # from . import LOGGER
 
+
 class BaseAPI(metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
@@ -66,10 +67,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         return (token, access_expires)
 
     def daily_consumption(
-        self,
-        usage_point_id: str,
-        from_date: str,
-        to_date: str
+        self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
             f"{self.api}/mesure_synchrone_auto/v2/consommation_quotidienne",
@@ -81,10 +79,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         )
 
     def consumption_load_curve(
-        self,
-        usage_point_id: str,
-        from_date: str,
-        to_date: str
+        self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
             f"{self.api}/mesure_synchrone_auto/v2/courbe_de_charge_consommation",
@@ -101,7 +96,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
         from_date: str,
         to_date: str,
         step: str = "P1D",
-        unit: str = "PMA"
+        unit: str = "PMA",
     ) -> Any:
         return self.get(
             f"{self.api}/mesure_synchrone_auto/v2/puissance_conso_max_quotidienne",
@@ -111,15 +106,11 @@ class BaseAPI(metaclass=abc.ABCMeta):
                 "dateFin": to_date,
                 "mesuresPas": step,
                 "grandeurPhysique": unit,
-
             },
         )
 
     def index_consumption(
-        self,
-        usage_point_id: str,
-        from_date: str,
-        to_date: str
+        self, usage_point_id: str, from_date: str, to_date: str
     ) -> Any:
         return self.get(
             f"{self.api}/mesure_synchrone_auto/v2/index_consommation",
@@ -129,6 +120,7 @@ class BaseAPI(metaclass=abc.ABCMeta):
                 "dateFin": to_date,
             },
         )
+
 
 class StagingAPI(BaseAPI):
     api = "https://gw.ext.prod-sandbox.api.enedis.fr"
