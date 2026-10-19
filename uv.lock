@@ -26,11 +26,11 @@ wheels = [
 
 [[package]]
 name = "certifi"
-version = "2026.7.22"
+version = "2026.10.18"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a3/c2/24167ea9858356b47a87a50d39908bfdb72ceeefe0041586e704e5376b3a/certifi-2026.7.22.tar.gz", hash = "sha256:741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55", size = 138112, upload-time = "2026-07-22T03:35:12.644Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/eb/a2aa1ac3ea30dd3f30ca57f40232138b6b0040719316ecb85daf61167771/certifi-2026.10.18.tar.gz", hash = "sha256:b9995d97b64d0431a5af837d8ca8cd6238104d1f319f04bd93ea43124d6c861e", size = 135227, upload-time = "2026-10-18T16:21:07.655Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl", hash = "sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775", size = 136983, upload-time = "2026-07-22T03:35:11.276Z" },
+    { url = "https://files.pythonhosted.org/packages/08/ba/95dd616042484f7c83a06974388b37b837732740ee70bc5dc715b5fcd55a/certifi-2026.10.18-py3-none-any.whl", hash = "sha256:73191c47aaa79da394e8fee2dbc2ec827432cab56311122c9e47abf79e390f62", size = 134093, upload-time = "2026-10-18T16:21:06.276Z" },
 ]
 
 [[package]]
@@ -270,14 +270,14 @@ wheels = [
 
 [[package]]
 name = "reactivex"
-version = "5.1.0"
+version = "6.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f2/c3/eeb429d774c135a8bebe2b8ac51f9639fde1953506f062b42b9ba6e44176/reactivex-5.1.0.tar.gz", hash = "sha256:b6b40269ebcbf24c53455c1b6790d682122cc8c01c907b8c8da47e2babb3b77e", size = 137788, upload-time = "2026-07-27T19:07:49.114Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/08/d3/d01637179bef4967bdf0d8f310a4fe37c4f2bc73c0e139ee597d42cf4041/reactivex-6.0.0.tar.gz", hash = "sha256:843ce6a7d8aa82bf369915e1e2c9e19154dbd30c7974ee981fd90edd88bd9fcf", size = 138425, upload-time = "2026-10-16T09:31:04.753Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e3/37/5b71117e68e5571c8c10942600eb02fb8c454c7347d08f8cddbdcde6ba6e/reactivex-5.1.0-py3-none-any.whl", hash = "sha256:8668c0a3c8ae8694f1180421b367489d35a8affa281a3605014bf54364eed3a0", size = 257317, upload-time = "2026-07-27T19:07:47.631Z" },
+    { url = "https://files.pythonhosted.org/packages/a1/a5/5e8ed0b60196eabc1c486ff541e72cdb5e9ada45838f71e57360bf994777/reactivex-6.0.0-py3-none-any.whl", hash = "sha256:ae3c021aa7b29b502cf932f5f15c35d7753f74fabc8256232ff0883a1fd911d6", size = 258318, upload-time = "2026-10-16T09:31:03.572Z" },
 ]
 
 [[package]]
